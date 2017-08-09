@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/mvc  
+    	http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+	<!-- 生成springmvc中需要用到的组件bean -->
+	<mvc:annotation-driven conversion-service="defaultConversionService" enable-matrix-variables="true">
+		<mvc:message-converters>
+			<!--  <bean class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter">
+				<property name="supportedMediaTypes">
+					<list>
+						<value>application/json</value>
+					</list>
+				</property>
+				<property name="features">
+					<list>
+						<value>WriteDateUseDateFormat</value>
+					</list>
+				</property>
+			</bean>  --> 
+			 <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+				<property name="objectMapper">
+					<bean class="com.fasterxml.jackson.databind.ObjectMapper">
+						<property name="dateFormat">
+							<bean class="java.text.SimpleDateFormat">
+								<constructor-arg type="java.lang.String" value="yyyy-MM-dd HH:mm:ss"></constructor-arg>
+							</bean>
+						</property>
+					</bean>
+				</property>
+			</bean>
+		</mvc:message-converters>
+	</mvc:annotation-driven>
+	 <!-- 拦截器配置，有就配置，没有就不需要 -->
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/user/ajax"/>
+			<bean class="com.gdglc.spring.mvc.interceptor.AuthInterceptor"></bean>
+		</mvc:interceptor>
+	</mvc:interceptors>
+	<!-- 静态资源的配置 -->
+	<mvc:resources location="/resource/js/" mapping="/js/**" />
+	<mvc:resources location="/resource/style/" mapping="/style/**" />
+	<mvc:resources location="/resource/images/" mapping="/images/**" />
+	<!-- 自动生成controller的bean -->
+	<context:component-scan base-package="com.gdglc.spring.mvc.controller" />
+	<!-- 自定义类型转换器的配置，有就配置，没有就不需要 -->
+	<bean id="defaultConversionService" class="org.springframework.context.support.ConversionServiceFactoryBean">
+		<property name="converters">
+			<set>
+				<bean class="com.gdglc.spring.mvc.converter.StringToDateConverter" />
+				<bean class="com.gdglc.spring.mvc.converter.StringToIntConverter" />
+			</set>	
+		</property>
+	</bean>
+	
+	<!-- 使用继承AbstractController的一个demo，开发中不需要 -->
+	<bean name="/index/abc" class="com.gdglc.spring.mvc.controller.IndexController" />
+	<!-- 配置jsp的视图解析，可以不配置，已经自动生成，在这里只是添加了前缀和后缀，在控制器中return的时候少写一点代码而已 -->
+	<bean id="jspViewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/view/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+	<!-- 上传文件的时候使用的视图解析 -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!-- <property name="defaultEncoding" value="utf-8"></property> -->
+		<property name="maxUploadSize" value="500000" />
+	</bean>
+
+
+	<!-- 配合项目中的自定义异常来处理 -->
+	<!-- <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver"> 
+		<property name="exceptionMappings"> <props> <prop key="java.lang.RuntimeException">list</prop> 
+		</props> </property> </bean> -->
+		<!-- 
+			多视图解析器，默认按1、头信息accept，2.请求后缀 .json,3，
+			请求参数，默认是format去确定使用那一种最合适的view对象进行渲染
+		 -->
+	<!-- <bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+		<property name="favorParameter" value="false"></property>
+		<property name="defaultContentType" value="text/html"/>
+		<property name="mediaTypes">
+			<map>
+				<entry key="html" value="text/html;charset=UTF-8"/>
+				<entry key="json" value="application/json;charset=UTF-8"/>
+			</map>
+		</property>
+		 <property name="viewResolvers">
+			<list>
+				<ref bean="jspViewResolver"/>
+			</list>
+		</property> 
+		<property name="defaultViews">
+            <list>
+                <bean class="org.springframework.web.servlet.view.json.MappingJackson2JsonView"></bean>
+            </list>
+        </property>
+	</bean>  -->
+</beans>
