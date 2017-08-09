@@ -8,7 +8,7 @@
 		<param-value>classpath:applicationContext.xml</param-value>
 	</context-param>
 	<!-- test -->
-	<!--监听!—>
+	<!--监听!用户A—>
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
