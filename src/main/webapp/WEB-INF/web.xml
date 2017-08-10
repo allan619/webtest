@@ -7,9 +7,10 @@
 		<param-name>contextConfigLocation</param-name>
 		<param-value>classpath:applicationContext.xml</param-value>
 	</context-param>
-	<!-- test -->
+	<!-- test 用户—2>
 	<!--监听!用户A—>
 	<!--修改-->
+	<!-- t10 -->
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
