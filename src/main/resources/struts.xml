@@ -7,9 +7,27 @@
   <constant name="struts.devMode" value="true" />
  <constant name="struts.action.extension" value="action,,aspx"/>
   <package name="webtest" namespace="/" extends="struts-default">
+    <!-- 一般都不使用，建议使用web.xml进行配置 -->
+    <!-- <default-action-ref name="default"></default-action-ref> -->
+    
+    <action name="default">
+    		<result>/index.jsp</result>
+    </action>
     <action name="hello" class="com.gdglc.spring.struts.controller.HelloAction">
       <result>/index.jsp</result>
       <result name="add">/WEB-INF/view/auth/user/add.jsp</result>
     </action>
+    <!-- 模块名称_类名称简写_方法名称 -->
+    <action name="*_*_*" class="com.gdglc.spring.struts.controller.{1}.{2}Action" method="{3}">
+		<result name="add" type="redirect">/auth_User_showList</result>
+		<result name="list">/jsp/{1}/{2}/list.jsp</result>
+		<!-- {0}表示同name相同名称，一般不建议使用 -->
+		<result name="test">/jsp/{0}.jsp</result>
+		<result name="update" type="redirectAction">
+			<param name="actionName">auth_User_showList</param>
+            <param name="namespace">/web</param>
+		</result>
+		<result name="info">/auth_User_showList</result>
+	</action>
   </package>
 </struts>

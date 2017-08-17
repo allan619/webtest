@@ -55,6 +55,10 @@
 	<filter-mapping>
 	  <filter-name>struts2</filter-name>
 	   <url-pattern>/*</url-pattern>
+	   <!-- 配置过滤的请求类型，默认为 REQUEST-->
+	  <!--  <dispatcher>REQUEST</dispatcher>
+	   <dispatcher>FORWARD</dispatcher>
+	   <dispatcher>INCLUDE</dispatcher> -->
 	</filter-mapping>
 	<!-- 定义错误处理页面，根据不同的状态返回编码指定到不同的页面 -->
 	<!-- <error-page>
