@@ -3,6 +3,7 @@ package com.gdglc.spring.struts.controller.auth;
 import com.gdglc.spring.SpringHelper;
 import com.gdglc.spring.biz.auth.IUserBiz;
 import com.gdglc.spring.exception.BizException;
+import com.opensymphony.xwork2.ActionContext;
 
 public class UserAction {
 	private String name;

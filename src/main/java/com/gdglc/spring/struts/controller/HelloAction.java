@@ -2,7 +2,10 @@ package com.gdglc.spring.struts.controller;
 
 import java.util.Map;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.apache.commons.lang3.StringUtils;
+import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.ApplicationAware;
 import org.apache.struts2.interceptor.RequestAware;
 import org.apache.struts2.interceptor.SessionAware;
@@ -38,6 +41,7 @@ public class HelloAction implements Action,SessionAware,ApplicationAware,Request
 		ServletContext application = ServletActionContext.getServletContext();
 		application.removeAttribute("name");
 		application.setAttribute("name", "123");*/
+		HttpServletResponse response = ServletActionContext.getResponse();
 		//使用接口的方式
 		session.put("name", "accp777");
 		request.put("name", "accprequest");
