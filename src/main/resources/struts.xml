@@ -9,7 +9,16 @@
   <package name="webtest" namespace="/" extends="struts-default">
     <!-- 一般都不使用，建议使用web.xml进行配置 -->
     <!-- <default-action-ref name="default"></default-action-ref> -->
-    
+    <interceptors>
+    		<interceptor name="myTime" class="com.gdglc.spring.struts.controller.interceptor.MyTimeInterceptor"/>
+    		<interceptor-stack name="webtest">
+    			<interceptor-ref name="myTime"/>
+    			<interceptor-ref name="defaultStack"/>
+    		</interceptor-stack>
+    </interceptors>
+    <default-interceptor-ref name="webtest">
+    		
+    </default-interceptor-ref>
     <action name="default">
     		<result>/index.jsp</result>
     </action>
