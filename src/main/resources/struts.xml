@@ -19,6 +19,19 @@
     <default-interceptor-ref name="webtest">
     		
     </default-interceptor-ref>
+    <global-results>
+	    	<result name="down" type="stream">
+	      	<!-- 指定下载文件的内容类型，text/plain是默认类型-->
+	      	<param name="contentType">application/octet-stream</param>
+	      	<!-- inputName默认值是inputStream，如果action中用于读取下载文件内容的属性名是inputStream，那么可以省略这个参数 -->
+	      	<!-- <param name="inputName">inputStream</param> -->
+	        <!--动态获取文件名，从Action中的取得filename-->
+	        <param name="contentDisposition">
+	          attachment;filename="${downFileName}"
+	        </param>
+	        <param name="bufferSize">1024</param>
+	      </result>
+    </global-results>
     <action name="default">
     		<result>/index.jsp</result>
     </action>
