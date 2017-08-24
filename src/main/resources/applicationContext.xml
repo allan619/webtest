@@ -39,6 +39,9 @@
 	<bean id="userBiz" class="com.gdglc.spring.biz.impl.auth.UserBizImpl">
 		<property name="mapper" ref="userInfoMapper"></property>
 	</bean>
+	<bean id="userAction" class="com.gdglc.spring.struts.controller.auth.UserAction" scope="prototype">
+		<property name="myUserBiz" ref="userBiz"/>
+	</bean>
 	<!-- 配置事务管理 -->
 	<!-- 配置事务管理器 -->
 	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">

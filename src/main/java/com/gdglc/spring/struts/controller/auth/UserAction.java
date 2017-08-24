@@ -1,5 +1,6 @@
 package com.gdglc.spring.struts.controller.auth;
 
+
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -10,20 +11,40 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.struts2.ServletActionContext;
+import org.apache.struts2.json.annotations.JSON;
+import org.springframework.web.context.request.RequestContextListener;
 
+import com.gdglc.spring.bean.auth.model.UserInfo;
+import com.gdglc.spring.biz.auth.IUserBiz;
 import com.gdglc.spring.exception.BizException;
+import com.gdglc.spring.struts.controller.BaseAction;
 
-public class UserAction {
+public class UserAction extends BaseAction{
 	private String name;
 	private File file;
 	private String fileContentType;
 	private String fileFileName;
 	private InputStream inputStream;
 	private String downFileName;
+	private IUserBiz myUserBiz;
+	private UserInfo info;
+
+	private List<UserInfo> userList;
 	
+	public IUserBiz getMyUserBiz() {
+		return myUserBiz;
+	}
+
+	public void setMyUserBiz(IUserBiz myUserBiz) {
+		this.myUserBiz = myUserBiz;
+	}
+
 	public File getFile() {
 		return file;
 	}
@@ -41,6 +62,7 @@ public class UserAction {
 	}
 
 	public String getFileFileName() {
+		//org.apache.struts2.spring.StrutsSpringObjectFactory
 		return fileFileName;
 	}
 
@@ -48,6 +70,7 @@ public class UserAction {
 		this.fileFileName = fileFileName;
 	}
 
+	
 	public String getName() {
 		return name;
 	}
@@ -72,6 +95,22 @@ public class UserAction {
 		this.downFileName = downFileName;
 	}
 
+	public UserInfo getInfo() {
+		return info;
+	}
+
+	public void setInfo(UserInfo info) {
+		this.info = info;
+	}
+	@JSON(name="rows")
+	public List<UserInfo> getUserList() {
+		return userList;
+	}
+
+	public void setUserList(List<UserInfo> userList) {
+		this.userList = userList;
+	}
+
 	public String showList() {
 		System.out.println("---UserAction showList---" + this.name);
 		return "list";
@@ -92,7 +131,20 @@ public class UserAction {
 	}
 
 	public String showInfo() {
+		System.out.println("showInfo="+this);
 		return "info";
+	}
+	
+	public String json(){
+		name = "test";
+		downFileName="test.jpg";
+		info = new UserInfo();
+		info.setId(1);
+		info.setCreateDate(new Date());
+		info.setUserName("accp");
+		userList = new ArrayList<UserInfo>();
+		userList.add(info);
+		return "json";
 	}
 
 	public String upload() {

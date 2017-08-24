@@ -3,6 +3,8 @@ package com.gdglc.spring.bean.auth.model;
 import java.io.Serializable;
 import java.util.Date;
 
+import org.apache.struts2.json.annotations.JSON;
+
 import com.gdglc.spring.utils.DateUtil;
 
 public class UserInfo implements Serializable{
@@ -23,6 +25,7 @@ public class UserInfo implements Serializable{
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
+	@JSON(format="yyyy-MM-dd HH:mm:ss")
 	public Date getCreateDate() {
 		return createDate;
 	}
@@ -30,6 +33,7 @@ public class UserInfo implements Serializable{
 		this.createDate = createDate;
 	}
 	
+	@JSON(serialize=false)
 	public String getCreateDateStr(){
 		return DateUtil.formate(getCreateDate());
 		 

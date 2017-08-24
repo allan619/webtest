@@ -10,6 +10,9 @@
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
+	<!-- <listener>
+		<listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
+	</listener> -->
 	<!-- <servlet> <servlet-name>InitServlet</servlet-name> <servlet-class>com.gdglc.spring.InitServlet</servlet-class> 
 		<load-on-startup>1</load-on-startup> </servlet> -->
 	<!-- <servlet>
