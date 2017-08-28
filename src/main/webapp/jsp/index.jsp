@@ -12,13 +12,17 @@
 	request.setAttribute("path", request.getContextPath());
 %>
 <body>
-<form id="userForm" action="${path}/auth_User_upload" enctype="multipart/form-data" method="post" target="frame">
+<form id="userForm" action="${path}/auth_user_upload" enctype="multipart/form-data" method="post" >
 		<label for="name">用户名：</label>
 		<input type="text" name="name" id="name"/>
 		<label for="age">年龄:</label>
 		<input type="text" name="age" id="age"/>
+		<br/>
+		<label for="age">坐标:</label>
+		<input type="text" name="point"  value="12.56,26.89"/>
+		<input type="text" name="pointList[0]"  value="12.56,26.89"/>
+		<input type="text" name="pointList[1]" value="3.5,67.908"/>
 		<input type="file" name="file"/>
-		
 		<input type="submit" value="提交">
 	</form>
 	<a href="${path}/auth_User_down">下载测试</a>

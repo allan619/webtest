@@ -5,7 +5,6 @@ import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -18,14 +17,15 @@ import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.json.annotations.JSON;
-import org.springframework.web.context.request.RequestContextListener;
+import org.aspectj.weaver.patterns.ThisOrTargetAnnotationPointcut;
 
 import com.gdglc.spring.bean.auth.model.UserInfo;
+import com.gdglc.spring.bean.other.vo.PointVo;
 import com.gdglc.spring.biz.auth.IUserBiz;
 import com.gdglc.spring.exception.BizException;
-import com.gdglc.spring.struts.controller.BaseAction;
 
-public class UserAction extends BaseAction{
+
+public class UserAction{
 	private String name;
 	private File file;
 	private String fileContentType;
@@ -34,9 +34,26 @@ public class UserAction extends BaseAction{
 	private String downFileName;
 	private IUserBiz myUserBiz;
 	private UserInfo info;
-
+	private PointVo point;
+	private List<PointVo> pointList;
 	private List<UserInfo> userList;
 	
+	public List<PointVo> getPointList() {
+		return pointList;
+	}
+
+	public void setPointList(List<PointVo> pointList) {
+		this.pointList = pointList;
+	}
+
+	public PointVo getPoint() {
+		return point;
+	}
+
+	public void setPoint(PointVo point) {
+		this.point = point;
+	}
+
 	public IUserBiz getMyUserBiz() {
 		return myUserBiz;
 	}
@@ -151,12 +168,14 @@ public class UserAction extends BaseAction{
 		System.out.println(this.file);
 		System.out.println(getFileContentType());
 		System.out.println(getFileFileName());
+		System.out.println(getPoint());
+		System.out.println(this.pointList);
 		try {
 			uploadFile(file, fileFileName, "/upload/", "test");
 		} catch (BizException e) {
 			e.printStackTrace();
 		}
-		return "info";
+		return "ognl";
 	}
 	
 	public String down(){
