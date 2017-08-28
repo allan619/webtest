@@ -16,6 +16,7 @@ import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.struts2.ServletActionContext;
+import org.apache.struts2.dispatcher.multipart.MultiPartRequestWrapper;
 import org.apache.struts2.json.annotations.JSON;
 import org.aspectj.weaver.patterns.ThisOrTargetAnnotationPointcut;
 
@@ -23,6 +24,8 @@ import com.gdglc.spring.bean.auth.model.UserInfo;
 import com.gdglc.spring.bean.other.vo.PointVo;
 import com.gdglc.spring.biz.auth.IUserBiz;
 import com.gdglc.spring.exception.BizException;
+import com.opensymphony.xwork2.ActionContext;
+import com.opensymphony.xwork2.util.ValueStack;
 
 
 public class UserAction{
@@ -170,6 +173,14 @@ public class UserAction{
 		System.out.println(getFileFileName());
 		System.out.println(getPoint());
 		System.out.println(this.pointList);
+		ValueStack valueStack = ActionContext.getContext().getValueStack();
+		UserInfo userInfo = new UserInfo();
+		userInfo.setId(100);
+		userInfo.setUserName("valueStack");
+		valueStack.push(userInfo);
+		String test = "test";
+		valueStack.push(test);
+		System.out.println(ServletActionContext.getRequest().getClass());
 		try {
 			uploadFile(file, fileFileName, "/upload/", "test");
 		} catch (BizException e) {

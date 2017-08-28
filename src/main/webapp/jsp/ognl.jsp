@@ -12,6 +12,8 @@
 <s:property value="%{point}"/>
 <s:property value="%{#request}"/>
 <s:debug/>
+${userName}
+<br/>
 ${point}
 <%
 	Map<String,String> map = new HashMap<String,String>();
