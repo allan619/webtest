@@ -1,0 +1,33 @@
+<!DOCTYPE validators PUBLIC "-//Apache Struts//XWork Validator 1.0.3//EN"
+        "http://struts.apache.org/dtds/xwork-validator-1.0.3.dtd">
+<validators>
+  <field name="name">
+      <field-validator type="stringlength" short-circuit="true">
+          <param name="minLength">5</param>
+          <message>name最少5个字</message>
+      </field-validator>    
+  </field>
+  <field name="info">
+  	 <field-validator type="required" short-circuit="true">
+          <message>info不能为空</message>
+      </field-validator> 
+  </field>
+  <field name="info.userName">
+  	 <field-validator type="required" short-circuit="true">
+          <message>info.userName不能为空</message>
+      </field-validator> 
+  </field>
+  <field name="userList">
+  	 <field-validator type="visitor" short-circuit="true">
+       <!--  <param name="fieldName">users</param> -->
+        <param name="context">user</param>
+        <param name="appendPrefix">true</param>
+        <message>集合对象中</message>
+     </field-validator> 
+  </field>
+ <!--  <field name="userList[0].userName">
+  	 <field-validator type="required" short-circuit="true">
+          <message>userList[0].userName不能为空</message>
+      </field-validator> 
+  </field> -->
+</validators>

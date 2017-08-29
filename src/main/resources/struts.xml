@@ -65,6 +65,7 @@
 		</result>
 		<result name="info">/jsp/{1}/{2}/info.jsp</result>
 		<result name="ognl">/jsp/ognl.jsp</result>
+		<result name="input">/jsp/ognl.jsp</result>
 	</action>
   </package>
 </struts>

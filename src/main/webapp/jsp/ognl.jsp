@@ -13,6 +13,7 @@
 <s:property value="%{#request}"/>
 <s:debug/>
 ${userName}
+${fieldErrors.test[0]}
 <br/>
 ${point}
 <%

@@ -17,18 +17,24 @@ import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.dispatcher.multipart.MultiPartRequestWrapper;
+import org.apache.struts2.interceptor.validation.SkipValidation;
 import org.apache.struts2.json.annotations.JSON;
+import org.aspectj.apache.bcel.classfile.Code;
 import org.aspectj.weaver.patterns.ThisOrTargetAnnotationPointcut;
+import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 
 import com.gdglc.spring.bean.auth.model.UserInfo;
 import com.gdglc.spring.bean.other.vo.PointVo;
 import com.gdglc.spring.biz.auth.IUserBiz;
 import com.gdglc.spring.exception.BizException;
 import com.opensymphony.xwork2.ActionContext;
+import com.opensymphony.xwork2.ActionSupport;
+import com.opensymphony.xwork2.Validateable;
+import com.opensymphony.xwork2.interceptor.annotations.InputConfig;
 import com.opensymphony.xwork2.util.ValueStack;
 
 
-public class UserAction{
+public class UserAction extends ActionSupport{
 	private String name;
 	private File file;
 	private String fileContentType;
@@ -40,6 +46,7 @@ public class UserAction{
 	private PointVo point;
 	private List<PointVo> pointList;
 	private List<UserInfo> userList;
+	
 	
 	public List<PointVo> getPointList() {
 		return pointList;
@@ -135,12 +142,12 @@ public class UserAction{
 		System.out.println("---UserAction showList---" + this.name);
 		return "list";
 	}
-
+	@InputConfig(resultName="json")
 	public String add() {
 		System.out.println("---UserAction add---");
-		return "add";
+		return "ognl";
 	}
-
+	@InputConfig(resultName="json")
 	public String delete() {
 		System.out.println("---UserAction delete---");
 		return "test";
@@ -261,5 +268,16 @@ public class UserAction{
 	}
 	public static void main(String[] args) {
 		System.out.println(File.separator);
+	}
+
+	@Override
+	public void validate() {
+		System.out.println("数据验证");
+		addFieldError("test", "测试错误");
+	}
+	
+	public void validateAdd() {
+		System.out.println("add方法数据验证");
+		addFieldError("adderror", "adderror");
 	}
 }
