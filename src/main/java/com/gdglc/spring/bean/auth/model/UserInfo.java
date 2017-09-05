@@ -36,6 +36,12 @@ public class UserInfo implements Serializable{
 	@JSON(serialize=false)
 	public String getCreateDateStr(){
 		return DateUtil.formate(getCreateDate());
-		 
 	}
+	@Override
+	public String toString() {
+		return "UserInfo [id=" + id + ", userName=" + userName
+				+ ", createDate=" + createDate + "]";
+	}
+	
+	
 }

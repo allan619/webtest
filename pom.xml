@@ -201,5 +201,11 @@
 		    <version>6.2.1.jre7</version>
 		    <!-- <scope>test</scope> -->
 		</dependency>
+		<!-- hibernate -->
+		<dependency>
+		    <groupId>org.hibernate</groupId>
+		    <artifactId>hibernate-core</artifactId>
+		    <version>3.6.10.Final</version>
+		</dependency>
 	</dependencies>
 </project>
