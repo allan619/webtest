@@ -13,6 +13,15 @@ public class UserInfo implements Serializable{
 	private int id;
 	private String userName;
 	private Date createDate;
+	
+	public UserInfo(){
+		
+	}
+	
+	public UserInfo(int id,String userName){
+		this.id = id;
+		this.userName = userName;
+	}
 	public int getId() {
 		return id;
 	}
@@ -25,6 +34,7 @@ public class UserInfo implements Serializable{
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
+
 	@JSON(format="yyyy-MM-dd HH:mm:ss")
 	public Date getCreateDate() {
 		return createDate;
