@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping package="com.gdglc.spring.bean.auth.model">
+	<class name="AddressInfo" table="address">
+		<id name="id" column="id">
+			<generator class="identity"/>
+		</id>
+		<property name="tel" column="tel" type="string"></property>
+		<property name="addressDesc" column="address_desc" type="string"></property>
+		<!--cascade 最多只能设置save-update，merge 建议为none  -->
+		<many-to-one cascade="save-update"  lazy="false" name="userInfo" column="user_id" class="UserInfo"></many-to-one>
+	</class>
+
+</hibernate-mapping>
