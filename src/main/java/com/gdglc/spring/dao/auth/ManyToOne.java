@@ -13,19 +13,19 @@ import com.gdglc.spring.dao.BaseDao;
 public class ManyToOne {
 	static BaseDao dao = new BaseDao();
 	public static void main(String[] args) {
-		//search();
+		search();
 		//save();
 		//update();
-		delete();
+		//delete();
 	}
 	//查询
 	public static void search(){
 		Session session = dao.getSession();
-//		AddressInfo info = (AddressInfo)session.get(AddressInfo.class, 1);
-//		System.out.println(info);
-//		System.out.println("------------------");
-//		System.out.println(info.getUserInfo());
-		Query query = session.createQuery(" from AddressInfo a  left join fetch a.userInfo ");
+		AddressInfo info = (AddressInfo)session.get(AddressInfo.class, 1);
+		System.out.println(info);
+		System.out.println("------------------");
+		System.out.println(info.getUserInfo());
+	/*	Query query = session.createQuery(" from AddressInfo a  left join fetch a.userInfo ");
 		List<AddressInfo> list = (List<AddressInfo>) query.list();
 		for (AddressInfo item : list) {
 			System.out.println(item);
@@ -34,7 +34,7 @@ public class ManyToOne {
 		System.out.println("----------------");
 		query = session.createQuery("select a,a.userInfo from AddressInfo a  where a.userInfo.userName = 'accp123' ");
 		list = query.list();
-		System.out.println(list.size());
+		System.out.println(list.size());*/
 		session.close();
 	}
 	

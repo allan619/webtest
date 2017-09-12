@@ -8,7 +8,7 @@
 		<property name="tel" column="tel" type="string"></property>
 		<property name="addressDesc" column="address_desc" type="string"></property>
 		<!--cascade 最多只能设置save-update，merge 建议为none  -->
-		<many-to-one cascade="save-update"  lazy="false" name="userInfo" column="user_id" class="UserInfo"></many-to-one>
+		<many-to-one  cascade="save-update"  lazy="false" fetch="select" name="userInfo" column="user_id" class="UserInfo"></many-to-one>
 	</class>
 
 </hibernate-mapping>
