@@ -27,6 +27,9 @@ public class UserBizImpl implements IUserBiz{
 		user.setCreateDate(new Date());
 		try{
 			mapper.add(user);
+			if(1==1){
+				//throw new BizException("测试事务异常");
+			}
 		}catch(Exception e){
 			throw new BizException("添加失败",e);
 		}

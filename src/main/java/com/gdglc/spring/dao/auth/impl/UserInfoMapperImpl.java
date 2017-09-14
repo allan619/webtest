@@ -1,53 +1,61 @@
 package com.gdglc.spring.dao.auth.impl;
 
-import java.util.Date;
+import java.sql.SQLException;
 import java.util.List;
 
+import org.hibernate.HibernateException;
+import org.hibernate.Query;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
-import org.hibernate.classic.Session;
+import org.springframework.orm.hibernate3.HibernateCallback;
+import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import com.gdglc.spring.bean.auth.model.UserInfo;
 import com.gdglc.spring.bean.auth.vo.UserInfoVo;
 import com.gdglc.spring.dao.auth.UserInfoMapper;
 
-public class UserInfoMapperImpl implements UserInfoMapper{
+public class UserInfoMapperImpl extends HibernateDaoSupport implements UserInfoMapper{
 
 	@Override
 	public List<UserInfo> findAll() {
-		// todo Auto-generated method stub
-		return null;
+		return (List<UserInfo>) getHibernateTemplate().find(" from UserInfo ");
 	}
 
 	@Override
 	public int add(UserInfo userInfo) {
-		// todo Auto-generated method stub
-		return 0;
+		return (Integer) getHibernateTemplate().save(userInfo);
 	}
 
 	@Override
 	public int delete(int id) {
-		// todo Auto-generated method stub
-		return 0;
+		getHibernateTemplate().delete(findById(id));
+		return 1;
 	}
 
 	@Override
 	public int update(UserInfo userInfo) {
-		// todo Auto-generated method stub
-		return 0;
+		getHibernateTemplate().update(userInfo);
+		return 1;
 	}
 
 	@Override
 	public UserInfo findById(int id) {
-		// todo Auto-generated method stub
-		return null;
+		return getHibernateTemplate().get(UserInfo.class, id);
 	}
 
 	@Override
-	public List<UserInfo> findByUser(UserInfoVo vo) {
-		// todo Auto-generated method stub
-		return null;
+	public List<UserInfo> findByUser(final UserInfoVo vo) {
+		return getHibernateTemplate().execute(new HibernateCallback<List<UserInfo>>() {
+			@Override
+			public List<UserInfo> doInHibernate(Session session)throws HibernateException, SQLException {
+				Query query = session.createQuery(" from UserInfo ");
+				query.setFirstResult(0);
+				query.setMaxResults(2);
+				return query.list();
+			}
+		});
 	}
 	public static void main(String[] args) {
 		//加载hibernate的配置文件，并解析

@@ -171,6 +171,11 @@ public class UserAction extends ActionSupport{
 		info.setUserName("accp");
 		userList = new ArrayList<UserInfo>();
 		userList.add(info);
+		try {
+			userList = myUserBiz.findAll();
+		} catch (BizException e) {
+			e.printStackTrace();
+		}
 		return "json";
 	}
 
@@ -273,11 +278,11 @@ public class UserAction extends ActionSupport{
 	@Override
 	public void validate() {
 		System.out.println("数据验证");
-		addFieldError("test", "测试错误");
+		//addFieldError("test", "测试错误");
 	}
 	
 	public void validateAdd() {
 		System.out.println("add方法数据验证");
-		addFieldError("adderror", "adderror");
+		//addFieldError("adderror", "adderror");
 	}
 }
