@@ -7,10 +7,22 @@
 		</id>
 		<property name="userName" column="user_name" type="string"/>
 		<property insert="false" update="false" name="createDate" column="createDate" type="timestamp"/>
-		<set name="addressInfos" lazy="false" fetch="join" cascade="all" inverse="true" >
+		<!-- <set name="addressInfos" lazy="false" fetch="join" cascade="all" inverse="true" >
+			从表的外键对应的列名称
+			<key column="user_id"></key>
+			<one-to-many class="com.gdglc.spring.bean.auth.model.AddressInfo"/>
+		</set> -->
+		<!-- <list name="addressList" lazy="false" fetch="join" cascade="all" inverse="true" >
+			从表的外键对应的列名称
+			<key column="user_id"></key>
+			<list-index column="id"/>
+			<one-to-many class="com.gdglc.spring.bean.auth.model.AddressInfo"/>
+		</list> -->
+		
+		<bag order-by="id desc" name="addressList" lazy="false" fetch="join" cascade="all" inverse="true" >
 			<!-- 从表的外键对应的列名称 -->
 			<key column="user_id"></key>
 			<one-to-many class="com.gdglc.spring.bean.auth.model.AddressInfo"/>
-		</set>
+		</bag>
 	</class>
 </hibernate-mapping>

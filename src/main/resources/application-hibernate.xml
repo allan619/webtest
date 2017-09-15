@@ -18,12 +18,13 @@
 		<property name="password" value="accp" />
 	</bean>
 	<!-- 配置sessionfactory,获取db连接 -->
-	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+	
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
 		<!-- 注入数据源 -->
 		<property name="dataSource" ref="dataSource" />
-		<property name="mappingDirectoryLocations">
+		<property name="packagesToScan" >
 			<list>
-				<value>classpath:hibernate</value>
+				<value>com.gdglc.spring.bean</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
@@ -36,6 +37,24 @@
 			</props>
 		</property>
 	</bean>
+	<!-- <bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		注入数据源
+		<property name="dataSource" ref="dataSource" />
+		<property name="mappingDirectoryLocations">
+			<list>
+				<value>classpath:hibernate</value>
+			</list>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.format_sql">true</prop>
+				<prop key="hibernate.use_sql_comments">true</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+			</props>
+		</property>
+	</bean> -->
 	<!-- 配置Dao -->
 	<bean id="userInfoMapper" class="com.gdglc.spring.dao.auth.impl.UserInfoMapperImpl">
 		<property name="sessionFactory" ref="sessionFactory"/>

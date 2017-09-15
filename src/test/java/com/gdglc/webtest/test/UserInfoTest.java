@@ -36,6 +36,9 @@ public class UserInfoTest {
 		System.out.println(userBiz);
 		try {
 			List<UserInfo> userList = userBiz.findByUser(null);
+			for (UserInfo userInfo : userList) {
+				System.out.println(userInfo);
+			}
 			Assert.assertNotNull(userList);
 			Assert.assertEquals(2, userList.size());
 		} catch (BizException e) {
@@ -43,6 +46,12 @@ public class UserInfoTest {
 			Assert.assertEquals(1, 0);
 		}
 	}
+	
+	@Test
+	public void update(){
+		System.out.println("ok");
+	}
+	
 	public static void main(String[] args) {
 		System.out.println("123");
 	}

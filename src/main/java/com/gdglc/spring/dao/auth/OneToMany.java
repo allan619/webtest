@@ -18,28 +18,28 @@ import com.gdglc.spring.dao.BaseDao;
 public class OneToMany {
 	static BaseDao dao = new BaseDao();
 	public static void main(String[] args) {
-		//search();
+		search();
 		//save();
-		update();
+		//update();
 	}
 	
 	public static void search(){
 		Session session = dao.getSession();
-		/*UserInfo userInfo = (UserInfo)session.get(UserInfo.class, 1);
+		UserInfo userInfo = (UserInfo)session.get(UserInfo.class, 1);
 		System.out.println(userInfo);
-		Set<AddressInfo> addressInfos = userInfo.getAddressInfos();
-		System.out.println("---------------1");
+		List<AddressInfo> addressList = userInfo.getAddressList();
+		System.out.println("---------------1"+addressList.size());
 		//Hibernate.initialize(addressInfos);
 		System.out.println("-----------2");
-		System.out.println(userInfo.getAddressInfos());*/
-		Query query = session.createQuery(" from UserInfo u left join fetch u.addressInfos");
-		List<UserInfo> list = query.list();
-		System.out.println(list.get(0)==list.get(1));
-		for (UserInfo item : list) {
-			System.out.println(item);
-			System.out.println(item.getAddressInfos().size());
-			
-		}
+	
+//		Query query = session.createQuery(" from UserInfo u left join fetch u.addressInfos");
+//		List<UserInfo> list = query.list();
+//		System.out.println(list.get(0)==list.get(1));
+//		for (UserInfo item : list) {
+//			System.out.println(item);
+//			System.out.println(item.getAddressInfos().size());
+//			
+//		}
 		session.close();
 	}
 	

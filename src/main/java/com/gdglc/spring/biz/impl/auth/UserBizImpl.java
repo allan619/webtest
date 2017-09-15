@@ -90,6 +90,7 @@ public class UserBizImpl implements IUserBiz{
 			}
 			return userList;
 		}catch(Exception e){
+			e.printStackTrace();
 			throw new BizException("查询失败");
 		}
 	}
