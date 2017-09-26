@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans 
+	xmlns="http://www.springframework.org/schema/beans" 
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:p="http://www.springframework.org/schema/p" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+	<!-- 定时任务 -->
+	<!-- 定义任务 -->
+	<bean name="firstJob" class="org.springframework.scheduling.quartz.JobDetailFactoryBean"> 
+		<property name="jobClass" value="com.gdglc.spring.job.FirstJob"/>
+		<property name="jobDataAsMap">
+			<map>
+				<entry key="name" value="accp"/>
+			</map>
+		 </property>
+	</bean>
+	<!-- 定义调用规则 -->
+	<bean id="t1" class="org.springframework.scheduling.quartz.SimpleTriggerFactoryBean"> 
+		<!-- see the example of method invoking job above -->
+		<property name="jobDetail" ref="firstJob"/>
+		<!-- 10 seconds -->
+		<!-- <property name="startDelay" value="3000"/>  -->
+		<!-- repeat every 50 seconds -->
+		<property name="repeatInterval" value="5000"/>
+	</bean>
+	<!-- 调用，配置调度 如果设置lazy-init="true"，则需要在获取该对象适才会启动任务 -->
+	<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean" > 
+		<property name="triggers">
+			<list>
+				<!-- <ref bean="cronTrigger"/>  -->
+				<ref bean="t1"/>
+			 </list>
+		 </property>
+	</bean>
+</beans>
