@@ -19,6 +19,12 @@
 			</map>
 		 </property>
 	</bean>
+	<bean id="simpleJob" class="com.gdglc.spring.job.SimpleJob"></bean>
+	
+	<bean id="jobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean"> 
+		<property name="targetObject" ref="simpleJob"/>
+		<property name="targetMethod" value="doWork"/>
+	</bean>
 	<!-- 定义调用规则 -->
 	<bean id="t1" class="org.springframework.scheduling.quartz.SimpleTriggerFactoryBean"> 
 		<!-- see the example of method invoking job above -->
@@ -28,13 +34,20 @@
 		<!-- repeat every 50 seconds -->
 		<property name="repeatInterval" value="5000"/>
 	</bean>
+	<bean id="cronTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+	 	<property name="jobDetail" ref="jobDetail"/>
+		<!-- run every morning at 6 AM -->
+		<property name="cronExpression" value="0 54/1 8 * * ? "/>
+	</bean>
 	<!-- 调用，配置调度 如果设置lazy-init="true"，则需要在获取该对象适才会启动任务 -->
 	<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean" > 
 		<property name="triggers">
 			<list>
-				<!-- <ref bean="cronTrigger"/>  -->
-				<ref bean="t1"/>
+				<ref bean="cronTrigger"/>
+				<!-- <ref bean="t1"/> -->
 			 </list>
 		 </property>
 	</bean>
+	<!-- 自己基于spring当前的任务调度管理器，写一个可以动态添加，删除，修改任务的类 -->
+	<!-- 完成多台服务器跑定时任务，注意不能2台同时跑同一个任务 -->
 </beans>
