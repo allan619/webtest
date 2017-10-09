@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>alignContent</title>
+	<link rel="stylesheet" href="">
+	<style type="text/css">
+		.row{
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: flex-start;
+			align-items:stretch;
+			flex-direction:row;
+			align-content:stretch;
+			border: 1px solid #000;
+			margin: 0px auto;
+			height: 300px;
+			width: 600px;
+		}
+
+		.row div{
+			border: 1px solid red;
+			flex-basis: 200px;
+			flex-shrink: 1;
+			padding: 10px;
+			margin: 5px;
+		}
+		#item3{
+			flex-basis: 250px;
+		}
+	</style>
+</head>
+<body>
+	<div class="row">
+		<div id="item1">a</div>
+		<div id="item2">b</div>
+		<div id="item3">c</div>
+		<div id="item3">d</div>
+		<div id="item3">c</div>
+		<div id="item3">d</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>justify</title>
+	<link rel="stylesheet" href="">
+	<style type="text/css" media="screen">
+		.box{
+			display: flex;
+			flex-direction: row;
+			flex-wrap: wrap;
+			justify-content: flex-end;
+	/*		height: 1200px;*/
+		}
+		.box div{
+			border: 1px solid red;
+			flex-basis: 100px;
+		}
+
+		.box div:nth-child(1){
+			flex-basis: 300px;
+		}
+	</style>
+</head>
+<body>
+	<div class="box">
+		<div>1</div>
+		<div>2</div>
+		<div>3</div>
+		<div>4</div>
+	</div>	
+</body>
+</html>

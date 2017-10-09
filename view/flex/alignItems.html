@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>alignitem</title>
+	<style type="text/css">
+		.row{
+			display: flex;
+			flex-wrap: nowrap;
+			justify-content: space-around;
+			align-items:baseline;
+			flex-direction:row;
+			border: 1px solid #000;
+			margin: 0px auto;
+			height: 300px;
+		}
+
+		.row div{
+			border: 1px solid red;
+			flex-basis: 200px;
+			flex-shrink: 1;
+		}
+		#item1{
+			padding: 30px 10px;
+		}
+		#item2{
+			padding: 60px 10px;
+			align-self: center;
+		}
+		#item3{
+			padding: 90px 10px;
+		}
+	</style>
+</head>
+<body>
+	<div class="row">
+		<div id="item1">a</div>
+		<div id="item2">b</div>
+		<div id="item3">c</div>
+	</div>
+</body>
+</html>

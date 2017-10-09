@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>warp</title>
+	<link rel="stylesheet" href="">
+	<style type="text/css">
+		.row{
+			display: flex;
+			flex-wrap: wrap-reverse;
+			flex-direction:row;
+			border: 1px solid #000;
+			margin: 0px auto;
+			width: 500px;
+		}
+		.row div{
+			border: 1px solid red;
+			flex-basis: 200px;
+			flex-shrink: 1;
+		}
+		.row .item3{
+			flex-basis: 400px;
+			flex-shrink: 2;
+		}
+	</style>
+</head>
+<body>
+	<div class="row">
+		<div class="item">a</div>
+		<div class="item">b</div>
+		<div class="item3">c</div>
+	</div>
+</body>
+</html>

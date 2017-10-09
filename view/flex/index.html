@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>首页</title>
+
+<style type="text/css">
+	.box{
+		display: flex;
+		flex-direction:row;
+		flex-wrap:wrap;
+		border: 1px solid #000;
+		padding: 10px;
+	}
+	aside{
+		flex:1;
+		background: red;
+		padding: 10px;
+	}
+	article{
+		flex:3;
+		background: yellow;
+		margin-left: 0px;
+		padding:10px;
+	}
+
+</style>
+
+</head>
+<body>
+	<div class="box">
+		<aside>
+			<h2>热点新闻</h2>
+			<ul>
+				<li><a href="direction.html" target="_blank">flex-direction</a></li>
+				<li><a href="warp.html" target="_blank">flex-wrap</a></li>
+				<li><a href="justify.html" target="_blank">justify-content</a></li>
+				<li><a href="alignItems.html" target="_blank">align-items</a></li>
+				<li><a href="alignContent.html" target="_blank">align-content</a></li>
+			</ul>
+		</aside>
+		<article>
+			<P>正文</P>
+			<h2>Flex 布局</h2>
+			<div>
+				<p>flex-direction：决定主轴的方向（即项目的排列方向）：flex-direction: row（默认值） | row-reverse | column | column-reverse;</p>
+					<p>flex-wrap：伸缩换行：nowrap（默认） | wrap | wrap-reverse</p>
+					<p>flex-flow: flex-direction || flex-wrap;</p>
+					<p>justify-content:主轴对齐： flex-start(默认值） | flex-end | center | space-between | space-around</p>
+					<p>align-items: 侧轴对齐：  flex-start | flex-end | center | baseline | stretch（默认值）;</p>
+					<p>align-content:定义了多根轴线的对齐方式。如果项目只有一根轴线，该属性不起作用 flex-start | flex-end | center | space-between | space-around | stretch（默认值）;</p>
+					<ul>
+						<li>flex-start：与交叉轴的起点对齐。</li>
+						<li>flex-end：与交叉轴的终点对齐。</li>
+						<li>center：与交叉轴的中点对齐。</li>
+						<li>space-between：与交叉轴两端对齐，轴线之间的间隔平均分布。</li>
+						<li>space-around：每根轴线两侧的间隔都相等。所以，轴线之间的间隔比轴线与边框的间隔大一倍。</li>
+						<li>stretch（默认值）：轴线占满整个交叉轴。</li>
+					</ul>
+					<ul>
+						<li>order：定义项目的排列顺序。数值越小，排列越靠前，默认为0。</li>
+						<li>flex-grow：项目的放大比例，默认为0，即如果存在剩余空间，也不放大 </li>
+						<li>flex-shrink：项目的缩小比例，默认为1，即如果空间不足，该项目将缩小。</li>
+						<li>flex-basis：在分配多余空间之前，项目占据的主轴空间（main size）。浏览器根据这个属性，计算主轴是否有多余空间。它的默认值为auto，即项目的本来大小。</li>
+						<li>flex：flex-grow, flex-shrink 和 flex-basis的简写，默认值为0 1 auto。后两个属性可选。该属性有两个快捷值：auto (1 1 auto) 和 none (0 0 auto)。</li>
+						<li>align-self：允许单个项目有与其他项目不一样的对齐方式，可覆盖align-items属性。默认值为auto，表示继承父元素的align-items属性，如果没有父元素，则等同于stretch。</li>
+						<li>align-self: auto | flex-start | flex-end | center | baseline | stretch;</li>
+					</ul>
+			</div>
+		</article>
+	</div>
+</body>
+</html>

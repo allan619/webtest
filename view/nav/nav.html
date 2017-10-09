@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>菜单项</title>
+	<link rel="stylesheet" href="">
+	<style type="text/css">
+		*{
+			margin:0px;
+			padding: 0px;
+		}
+		body{
+			background-color: #f9f9f9;
+		}
+		#imgLogo{
+		    display: none;
+		}
+		ul{
+			list-style: none;
+			display: flex;
+		}
+		
+		ul li{
+			flex-basis: 150px;
+			height: 150px;
+			/*transition: all .5s ease;*/
+			cursor: pointer;
+		}
+		ul li a{
+			display: block;
+			height: 100%;
+			width: 100%;
+			/*transition: all .5s ease;*/
+			color: rgba(249, 249, 249, 0.99);
+			text-decoration: none;
+			/*text-align: center;*/
+			font-weight: bold;
+		}
+
+		ul li a img{
+			 background: rgba(255, 255, 255, 0.1);
+			 padding: 10px;
+			 border-radius: 50%;
+			 box-shadow:0 0 0 20px transparent;
+			/* transition: all .5s ease-in-out;*/
+			 margin-top: 20px;
+		}
+
+		ul li a span{
+			/*display: block;*/
+			/*transition: padding-top .7s ease;*/
+			padding-top: 30px;
+		}
+	
+	 	ul:hover a {
+   			color: rgba(249, 249, 249, .5);
+		}
+ 		ul:hover a:hover {
+   			 color: rgba(249, 249, 249, 0.99);
+		}
+
+		
+
+		ul li:hover a span{
+			padding-top: 60px;
+			/*color: #fff;*/
+			font-size: 20px;
+		}
+
+		ul li:hover a img{
+			 box-shadow:0 0 0 0 rgba(255, 255, 255, 0.2);
+		}
+		
+		ul li:nth-child(1){
+			background-color:#abc773;
+		}
+		ul li:nth-child(2){
+			background-color:#FF8000;
+		}
+		ul li:nth-child(3){
+			background-color:#2894FF;
+		}
+		ul li:nth-child(4){
+			background-color:#F00078;
+		}
+		ul li:nth-child(5){
+			background-color:#743A3A;
+		}
+		ul li:nth-child(6){
+			background-color:#28004D;
+		}
+		
+		@media screen and (min-width: 800px){
+			ul li:hover{
+				height: 200px;
+			}
+			ul li{
+				transition: all .5s ease;
+			}
+			ul li a{
+				transition: all .5s ease;
+				text-align: center;
+			}
+
+			ul li a img{
+				 transition: all .5s ease-in-out;
+			}
+
+			ul li a span{
+				transition: padding-top .7s ease;
+				display: block;
+			}
+
+		}
+
+		@media screen and (min-width: 520px) and (max-width: 799px){
+			ul{
+				flex-wrap: wrap;
+			}
+			ul li{
+				flex-basis: 50%;
+				height: 100px;
+			}
+			ul li a img{
+				 transition: all .5s ease-in-out;
+				 margin-top: 20px;
+				 margin-left: 20px;
+			}
+		} 
+		
+		@media screen and (max-width: 519px){
+			ul{
+				flex-direction: column;
+			}
+			ul li{
+				flex-basis: 50px;
+				height: auto;
+				/*height: 100px;*/
+			}
+			#imgLogo{
+		    	display: block;
+       			margin-top: 20px;
+        		cursor: pointer;
+			}
+			ul li a img{
+				 transition: all .5s ease-in-out;
+				 margin-left: 20px;
+				 margin-top: 0px;
+			}
+
+			#ulList{
+				display: none;
+			}
+		}
+
+	</style>
+
+</head>
+<body>
+	<div class="warper">
+		<nav>
+			<img id="imgLogo" src="image/1.png" alt=""/>
+			<ul id="ulList">
+				<li><a href="#" title=""><img src="image/2.png" class="icon"><span>Home</span></a></li>
+				<li><a href="#" title=""><img src="image/3.png" class="icon"><span>菜单二</span></a></li>
+				<li><a href="#" title=""><img src="image/4.png" class="icon"><span>菜单三</span></a></li>
+				<li><a href="#" title=""><img src="image/5.png" class="icon"><span>菜单四</span></a></li>
+				<li><a href="#" title=""><img src="image/6.png" class="icon"><span>菜单五</span></a></li>
+				<li><a href="#" title=""><img src="image/7.png" class="icon"><span>菜单六</span></a></li>
+			</ul>
+		</nav>
+	</div>
+	<script src="../../js/jquery-1.12.4.js" type="text/javascript"></script>
+	<script  type="text/javascript">
+		$('#imgLogo').click(function(){
+        	$('#ulList').toggle();
+    	})
+	</script>
+
+</body>
+</html>
