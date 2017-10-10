@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>nva</title>
+	<link rel="stylesheet" href="">
+	<style type="text/css" >
+		*{
+			margin: 0px;
+			padding: 0px;
+		}
+		body{
+			background-color: #f9f9f9;
+		}
+		ul{
+			list-style: none;
+			display: flex;
+		}
+		ul li{
+			flex-basis: 16.667%;
+			border:1px solid red;
+			/*height: 200px;*/
+			/*transition:all .5s ease;*/
+		}
+		ul li a{
+			text-decoration: none;
+			color: rgba(249, 249, 249, 0.99);
+			display: block;
+			width: 100%;
+			height:100%;
+			/*transition:all .7s ease;*/
+			text-align: center;
+		}
+		
+		ul li a span{
+			/*display: block;*/
+			padding-top: 40px;
+		/*	transition:all .6s ease;*/
+			font-size: 16px;
+		}
+
+
+		ul li:nth-child(1){
+			background-color:#abc773;
+		}
+		ul li:nth-child(2){
+			background-color:#FF8000;
+		}
+		ul li:nth-child(3){
+			background-color:#2894FF;
+		}
+		ul li:nth-child(4){
+			background-color:#F00078;
+		}
+		ul li:nth-child(5){
+			background-color:#743A3A;
+		}
+		ul li:nth-child(6){
+			background-color:#28004D;
+		}
+		
+
+		ul li a:hover{
+			
+		}
+
+		
+
+		ul li a img{
+			padding: 10px;
+			background-color: rgba(255, 255, 255, 0.1);
+			border-radius: 50%;
+			box-shadow: 0 0 0 20px transparent;
+			/*transition:all .5s ease;*/
+			margin-top: 10px;
+		}
+		ul li:hover img{
+			box-shadow: 0 0 0 0px rgba(255, 255, 255, 0.3);
+		}
+
+		ul:hover a {
+   			color: rgba(249, 249, 249, .5);
+		}
+ 		ul:hover a:hover {
+   			 color: rgba(249, 249, 249, 0.99);
+		}
+		#imglogo{
+			display: none;
+		}
+		/**分辨率>700px*/
+		@media screen and (min-width:700px){
+			ul li{
+				height: 200px;
+				transition:all .5s ease;
+			}
+
+			ul li a img{
+				transition:all .5s ease;
+			}
+			ul li a span{
+				display: block;
+				transition:all .6s ease;
+			}
+			ul li:hover{
+				height: 240px;
+			}
+			ul li a:hover span{
+				padding-top: 80px;
+				font-size: 24px;
+			}
+		}
+
+		/**分辨率<500px*/
+		@media screen and (max-width:500px){
+			#imglogo{
+				display: block;
+			}
+			ul{
+				/*display: flex;*/
+				flex-direction: column;
+			}
+			ul li{
+				flex-basis: 50px;
+			}
+			ul li a{
+				text-align: left;
+			}
+			ul li a img{
+				padding: 5px;
+				background-color: rgba(255, 255, 255, 0.1);
+				border-radius: 50%;
+				box-shadow: 0 0 0 10px transparent;
+				/*transition:all .5s ease;*/
+				margin-top: 5px;
+			}
+			ul li a img{
+				transition:all .5s ease;
+			}
+
+		}
+	</style>
+</head>
+<body>
+	<div>
+		<nav>
+			<img id="imglogo" src="image/1.png" alt=""></img>
+			<ul>
+				<li><a href="" title=""><img src="image/2.png" alt=""/><span>菜单一</span></a></li>
+				<li><a href="" title=""><img src="image/3.png" alt=""/><span>菜单二</span></a></li>
+				<li><a href="" title=""><img src="image/4.png" alt=""/><span>菜单三</span></a></li>
+				<li><a href="" title=""><img src="image/5.png" alt=""/><span>菜单四</span></a></li>
+				<li><a href="" title=""><img src="image/6.png" alt=""/><span>菜单五</span></a></li>
+				<li><a href="" title=""><img src="image/7.png" alt=""><span>菜单六</span></a></li>
+			</ul>
+		</nav>
+	</div>
+
+	
+	
+</body>
+</html>
